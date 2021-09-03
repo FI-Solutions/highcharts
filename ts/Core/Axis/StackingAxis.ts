@@ -208,16 +208,18 @@ namespace StackingAxis {
                     actualSeries.setGroupedPoints();
                 }
 
-                // Loop up again to compute percent and stream stack and delete pseudo stacks
+                // Loop up again to compute percent and stream
+                // stack and delete pseudo stacks
                 for (i = 0; i < len; i++) {
-                    // After updating, if we now have proper stacks, we must delete the group
+                    // After updating, if we now have proper stacks,
+                    // we must delete the group
                     // pseudo stacks (#14986)
-                    const axisSeriesStacking = axisSeries[i].yAxis.stacking
-                    if (!(axisSeries[i].options.centerInCategory
-                        && (axisSeries[i].is('column') || axisSeries[i].is('columnrange')) 
-                        && !axisSeries[i].options.stacking
-                        && axisSeries[i].chart.series.length > 1)
-                        && axisSeriesStacking) {
+                    const axisSeriesStacking = axisSeries[i].yAxis.stacking;
+                    if (!(axisSeries[i].options.centerInCategory &&
+                        (axisSeries[i].is('column') || axisSeries[i].is('columnrange')) &&
+                        !axisSeries[i].options.stacking &&
+                        axisSeries[i].chart.series.length > 1) &&
+                        axisSeriesStacking) {
                         objectEach(axisSeriesStacking.stacks, (type, key): void => {
                             if (key.slice(-5) === 'group') {
                                 objectEach(type, (stack): void => stack.destroy());
